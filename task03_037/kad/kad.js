@@ -19,7 +19,7 @@ Modal.prototype.confirm = function(){
 Modal.prototype.drag = function(){
 	var win = this.win;
 	var ifdrag;
-	addEvent(this.win, 'mousedown', dragdown = function(){
+	addEvent(win, 'mousedown', dragdown = function(event){
 		ifdrag = true;
 		event = event || window.event;
 		disX = event.clientX - win.offsetLeft;
