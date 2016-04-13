@@ -1,0 +1,23 @@
+*{
+	font-family: "Microsoft YaHei";
+	margin: 0;
+	padding: 0;
+	box-sizing:border-box;
+	text-align: center;
+}
+body{
+	height: 2000px;
+}
+table{
+	margin: 60px auto;
+	border-collapse: collapse;
+}
+thead{
+	color: white;
+	background-color: black;
+}
+th,td{
+	line-height: 40px;
+	border: 1px solid grey;
+	width: 140px;
+}
