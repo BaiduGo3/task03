@@ -1,0 +1,60 @@
+*{
+	font-family: "Microsoft YaHei";
+	margin: 0;
+	padding: 0;
+	box-sizing:border-box;
+	font-size: 14px;
+}
+.container{
+	max-width: 1200px;
+	margin: 100px auto;
+}
+input{
+	height: 30px;
+	width: 200px;
+	border: 1px solid #ccc;
+	padding-left: 10px;
+}
+.calendar{
+	width: 260px;
+	position: absolute;;
+	display: block;
+	margin-top: 10px;
+	border: 1px solid #ccc;
+}
+.calendar .title{
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	background-color: purple;
+}
+.calendar .week{
+	border-bottom: 1px solid #ccc;
+}
+.calendar select{
+	/*overflow-y:auto;*/
+	width: 80px;
+	height: 25px;
+}
+.calendar ul{
+	list-style: none;
+	overflow: hidden;
+	/*display: flex;*/
+	/*justify-content: space-around;*/
+}
+.calendar ul li{
+	display: inline-block;
+	text-align: center;
+	width: 35px;
+	line-height: 35px;
+	cursor: pointer;
+}
+.calendar .date ul li:hover{
+	background-color: purple;
+}
+.calendar .week{
+	padding: 0 5px;
+}
+.calendar .date{
+	padding: 5px;
+}
