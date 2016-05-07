@@ -6,26 +6,37 @@
 	<link rel="stylesheet" type="text/css" href="wl.css">
 </head>
 <body>
-	<div id="container">
+	<div id="dateInput">
+		<div class="input-group">
+			<i class="iconfont" id="calendarIcon">&#xe61d;</i>
+			<input type="text" id="showDate">
+		</div> 
+	</div>
+	<div id="calendar">
 		<div id="search">
-			<i class="iconfont" id="minus">&#xe608;</i>
+			<i class="iconfont" id="minus">&#xe60c;</i>
 			<div class="input-group">
 				<input id="month" type="text">
 				<div id="monthChoice">
-					<i class="iconfont up" id="monthUp">&#xe604;</i>
-					<i class="iconfont down" id="monthDown">&#xe601;</i>
+					<i class="iconfont up" id="monthUp">&#xe608;</i>
+					<i class="iconfont down" id="monthDown">&#xe602;</i>
 				</div>
 			</div>
 			<div class="input-group">
 				<input id="year" type="text">
 				<div id="yearChoice">
-					<i class="iconfont up" id="yearUp">&#xe604;</i>
-					<i class="iconfont down" id="yearDown">&#xe601;</i>
+					<i class="iconfont up" id="yearUp">&#xe608;</i>
+					<i class="iconfont down" id="yearDown">&#xe602;</i>
 				</div>
 			</div>
-			<i class="iconfont" id="plus">&#xe701;</i>
+			<i class="iconfont" id="plus">&#xe600;</i>
+			<br>
+			<div class="input-group" id="radios">
+				<label>具体一天：<input id="specificDay" type="radio" name="choiceMethod" checked="checked"></label>
+				<label>时间段：<input id="periodTime" type="radio" name="choiceMethod"></label>
+			</div>
 		</div>
-		<table id="calendar">
+		<table>
 			<thead>
 				<tr>
 					<th>Su</th>

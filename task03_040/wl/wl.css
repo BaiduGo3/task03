@@ -18,9 +18,33 @@
     -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
 }
-#container{
+#dateInput{
 	width:300px;
-	margin:100px auto;
+	margin:100px auto 0 auto;
+}
+#calendarIcon{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+	background:#dcdcdc;
+	width:40px;
+	height:28px;
+	line-height: 24px;
+	border:1px solid #d3d3d3;
+	font-size: 24px;
+}
+#showDate{
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;
+	display: table-cell;
+    padding:2px 5px;
+    height:24px;
+}
+#calendar{
+	width:300px;
+	margin:10px auto;
 	padding:20px;
 	border:1px solid #d3d3d3;
 	border-radius:5px;
@@ -29,6 +53,7 @@
 	width:100%;
 	display: flex;
 	justify-content:space-around;
+	flex-flow:wrap;
 	align-items: center;
 }
 .input-group{
@@ -37,7 +62,7 @@
 	border-collapse: separate;
 	height:24px;
 }
-#search input{
+#search input[type=text]{
 	width:90px;
 	height:20px;
 	border-top-left-radius:5px;
@@ -45,6 +70,13 @@
 	display: table-cell;
     padding:2px 5px;
 }
+#radios{
+	margin:10px auto 0 auto;
+}
+#radios label{
+	margin-right:10px;
+}
+/*#radios label*/
 #yearChoice,#monthChoice{
 	width:20px;
 	height:20px;
@@ -72,7 +104,7 @@ i{
 	top:-4px;
 }
 table{
-	margin:20px auto;
+	margin:0px auto;
 	width:100%;
 }
 th,td{
