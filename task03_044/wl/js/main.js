@@ -1,8 +1,8 @@
-var main = $("main");
-var colInput = $("col");
-var gapInput = $("gap");
-var addBtn = $("add"); 
-var maskLayer = $("maskLayer");
+var main = $("#main");
+var colInput = $("#col");
+var gapInput = $("#gap");
+var addBtn = $("#add"); 
+var maskLayer = $("#maskLayer");
 
 
 window.onload = function(){
