@@ -49,13 +49,6 @@ Background.prototype.draw = function(){
 	this.initMap();
 	this.randomRoad();
 	this.createWall();
-
-	// do{
-	// 	this.initMap();
-	// 	this.createWall();
-	// 	var route = searchRoad(0, 0, (MAP.rows - 2), (MAP.cols - 2));
-	// }while(route.length == 0)
-	
 	this.drawBg();
 }
 Background.prototype.drawBg = function(){
@@ -70,6 +63,11 @@ Background.prototype.drawBg = function(){
 			this.context.fillRect(i*SIZE, j*SIZE, SIZE, SIZE);
 		}
 	}
+	this.context.fillStyle = "red";
+	this.context.font = "24px Helvetica";
+	this.context.textAlign = "left";
+	this.context.textBaseLine = "top";
+	this.context.fillText("Support Dir Key", CANVAS_WIDTH - 170, 32);
 }
 
 function Agent(){
@@ -90,17 +88,13 @@ Agent.prototype.draw = function(){
 	this.context.restore();
 }
 Agent.prototype.move = function(){
+	this.keydown();
 	if(this.ifmove){
 		if(this.routeArr.length == 0){
 			this.ifmove = false;
 			return;
 		}
-		this.context.save();
-		this.context.clearRect(this.x, this.y, SIZE, SIZE);
-		this.context.fillStyle = BgColor;
-		this.context.fillRect(this.x, this.y, SIZE, SIZE);
-		this.context.restore();
-
+		this.clear();
 		var curRode = this.routeArr[0];
 		if(this.x == curRode.x * SIZE && this.y == curRode.y * SIZE){
 			this.routeArr.shift();
@@ -111,21 +105,63 @@ Agent.prototype.move = function(){
 		}
 		if(this.x > curRode.x * SIZE){
 			this.x -= this.speed;
-			if(this.x <= 0) this.x = 0;
 		}else if(this.x < curRode.x * SIZE){
 			this.x += this.speed;
-			if(this.x >= CANVAS_WIDTH - SIZE) this.x -= this.speed;
 		}
 		if(this.y > curRode.y * SIZE){
 			this.y -= this.speed;
-			if(this.y <= 0) this.y = 0;
 		}else if(this.y < curRode.y * SIZE){
 			this.y += this.speed;
-			if(this.y >= CANVAS_HEIGHT - SIZE) this.y -= this.speed;
 		}
+		this.bound();
 	}
 	this.draw();
 }
+Agent.prototype.clear = function(){
+	this.context.save();
+	this.context.clearRect(this.x, this.y, SIZE, SIZE);
+	this.context.fillStyle = BgColor;
+	this.context.fillRect(this.x, this.y, SIZE, SIZE);
+	this.context.restore();
+}
+Agent.prototype.bound = function(){
+	if(this.x <= 0) this.x = 0;
+	if(this.x >= CANVAS_WIDTH - SIZE) this.x -= this.speed;
+	if(this.y <= 0) this.y = 0;
+	if(this.y >= CANVAS_HEIGHT - SIZE) this.y -= this.speed;
+}
+Agent.prototype.keydown = function(){
+	this.clear();
+	switch(DIR){
+		case 0:
+			if(!block(this.x-this.speed, this.y)) this.x -= this.speed;
+			break;
+		case 1:
+			if(!block(this.x, this.y-this.speed)) this.y -= this.speed;
+			break;
+		case 2:
+			if(!block(this.x+this.speed, this.y)) this.x += this.speed;
+			break;
+		case 3:
+			if(!block(this.x, this.y+this.speed)) this.y += this.speed;
+			break;
+	}
+	this.bound();
+
+	function block(x, y){
+		var lef_x = parseInt(x/SIZE);
+		var top_y = parseInt(y/SIZE);
+		var rig_x = parseInt((x+SIZE-1)/SIZE);
+		var bot_y = parseInt((y+SIZE-1)/SIZE);
+		return MAP.arr[lef_x][top_y] == 1 || MAP.arr[lef_x][bot_y] == 1 || MAP.arr[rig_x][top_y] == 1 || MAP.arr[rig_x][bot_y] == 1;
+	}
+}
+addEvent(document, "keydown", function(e){
+	DIR = {37: 0, 38: 1, 39: 2, 40: 3}[e.keyCode];//0|left, 1|up, 2|right, 3|down
+})
+addEvent(document, "keyup", function(e){
+	DIR = -1;
+})
 
 function File(){
 	this.x = (MAP.rows - 2) * SIZE;
@@ -195,7 +231,6 @@ addEvent(document, "click", function(e){
 		start_x = parseInt(game.agent.x / SIZE),
 		start_y = parseInt(game.agent.y / SIZE);
 	var routeArr = searchRoad(start_x, start_y, end_x, end_y);
-	// console.log(start_x, start_y, end_x, end_y, routeArr);
 	game.agent.routeArr = routeArr;
 	game.agent.ifmove = true;
 })

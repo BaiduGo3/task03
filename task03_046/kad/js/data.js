@@ -13,3 +13,5 @@ var BgColor = "rgb(255,230,205)",
     WallColor = "rgb(46,30,30)",
     AgentColor = "rgb(68,184,17)",
     FileColor = "rgb(244,175,41)";
+
+var DIR = -1;
